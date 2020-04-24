@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
-# include <stdio.h> //REMOVE ME
+# include <stdio.h>
 # include "gnl.h"
 # include "ft_printf.h"
 # include "libft.h"
@@ -54,22 +54,22 @@
 
 # define TEX_NUMBER 5
 
-typedef struct		s_xy {
-	double			x;
-	double			y;
-}					t_xy;
+typedef struct			s_xy {
+	double		x;
+	double		y;
+}				t_xy;
 
 typedef struct		s_color {
-	int				r;
-	int				g;
-	int				b;
-}					t_color;
+	int		r;
+	int		g;
+	int		b;
+}			t_color;
 
 typedef struct		s_cam {
-	double			planestart;
-	double			planexraydir;
-	double			planewalldist;
-}					t_cam;
+	double		planestart;
+	double		planexraydir;
+	double		planewalldist;
+}			t_cam;
 
 typedef struct		s_keylog {
 	unsigned char	mov_up;
@@ -80,152 +80,135 @@ typedef struct		s_keylog {
 	unsigned char	look_left;
 	unsigned char	look_up;
 	unsigned char	look_down;
-}					t_keylog;
+}			t_keylog;
 
 typedef struct		s_image {
-	void			*img_ptr;
-	char			*img_data_addr;
-	int				img_bpp;
-	int				img_bpp_by8;
-	int				img_line_size;
-	int				endianess;
-	int				width;
-	int				height;
-	double			x;
-	double			y;
-}					t_image;
+	void		*img_ptr;
+	char		*img_data_addr;
+	int		img_bpp;
+	int		img_bpp_by8;
+	int		img_line_size;
+	int		endianess;
+	int		width;
+	int		height;
+	double		x;
+	double		y;
+}			t_image;
 
 typedef struct		s_textures {
-//	t_image			sky;
-	t_image			northwall;
-	t_image			westwall;
-	t_image			southwall;
-	t_image			eastwall;
-	t_image			pillar;
-}					t_textures;
+	t_image		northwall;
+	t_image		westwall;
+	t_image		southwall;
+	t_image		eastwall;
+	t_image		pillar;
+}			t_textures;
 
 typedef struct		s_render {
-	int				x;
-	double			xraydir;
-	t_cam			cam;
-	double			camplanedir;
-	double			xeuclidwalldist;
-	int				side;
-	double			camplanedist;
-	double			xrayoffset;
-	int				quarter;
-	int				hmapstep;
-	int				vmapstep;
-	double			h0;
-	double			v0;
-	double			hstep;
-	double			vstep;
-	double			invsinmul;
-	double			invcosmul;
-	double			deltax;
-	double			deltay;
-}					t_render;
+	int		x;
+	double		xraydir;
+	t_cam		cam;
+	double		camplanedir;
+	double		xeuclidwalldist;
+	int		side;
+	double		camplanedist;
+	double		xrayoffset;
+	int		quarter;
+	int		hmapstep;
+	int		vmapstep;
+	double		h0;
+	double		v0;
+	double		hstep;
+	double		vstep;
+	double		invsinmul;
+	double		invcosmul;
+	double		deltax;
+	double		deltay;
+}			t_render;
 
 typedef struct		s_sprite {
-	t_image			*img;
-	t_xy			pos;
-	int				firstx;
-	double			firstxangle;
-	int				lastx;
-	double			lastxangle;
-	int				centerx;
-	double			radcenterangle;
-	double			centerangle;
-	double			deltax;
-	double			deltay;
-	double			dist;
-	double			camplanedist;
-	int				drawnspriteheight;
-	int				drawnspritewid;
-	int				xoffset;
-	int				yoffset;
-	int				rightoffset;
-	int				begindrawnspritey;
-	int				enddrawnspritey;
-	double			spriteystep;
-	int				begindrawnspritex;
-	int				enddrawnspritex;
-	double			spritexstep;
-	t_xy			coord;
-	double			begincoordy;
-	int				ispritex;
-	int				ispritey;
-	int				spritepixidx;
-	t_color			pixcolor;
-}					t_sprite;
+	t_image		*img;
+	t_xy		pos;
+	int		firstx;
+	double		firstxangle;
+	int		lastx;
+	double		lastxangle;
+	int		centerx;
+	double		radcenterangle;
+	double		centerangle;
+	double		deltax;
+	double		deltay;
+	double		dist;
+	double		camplanedist;
+	int		drawnspriteheight;
+	int		drawnspritewid;
+	int		xoffset;
+	int		yoffset;
+	int		rightoffset;
+	int		begindrawnspritey;
+	int		enddrawnspritey;
+	double		spriteystep;
+	int		begindrawnspritex;
+	int		enddrawnspritex;
+	double		spritexstep;
+	t_xy		coord;
+	double		begincoordy;
+	int		ispritex;
+	int		ispritey;
+	int		spritepixidx;
+	t_color		pixcolor;
+}			t_sprite;
 
 /*
 ** Main struct
 */
 
 typedef struct		s_cub3d {
-	int				fd;
-	char			filename[100];
-	pthread_t		thread_id;
-	int				save_bmp;
-/*
-** minilibx utilities 
-*/
-	void			*mlx_id;
-	void			*mlx_win_id;
-	t_image			display;
-/*
-** textures, sprites and colors
-*/
-	t_color			ceilcol;
-	t_textures		textures;
-	double			*z_buffer;
-	double			*camplanexraydirsin_buffer;
-	t_image			*curtexp;
-	int				winy;
-	int				drawnwallheight;
-	int				win_beginwall;
-	int				win_endwall;
-//	unsigned int	floorcolor;
-	t_color			floorcol;
-	t_xy			camplanevec;
-/*
-** display res, map and parsing utilities
-*/
-	t_xy			res;
-	double			halfres;
-	char			**map;
-	int				rows;
-	int				wid;
-	int				ispos;
-	t_xy			playerpos;
-	double			playerdir;
-	double			azimut;
-	int				hitwalldir;
-	int				spritesnb;
-	t_sprite		**sprites;
-	t_sprite		**sptab;
-/*
-** DDA utilities
-*/
-	t_render		s;
-	double			maxraylength;
-/*
-** keys and movement 
-*/
-	t_keylog		keylog;
+	int		fd;
+	char		filename[100];
+	pthread_t	thread_id;
+	int		save_bmp;
+	void		*mlx_id;
+	void		*mlx_win_id;
+	t_image		display;
+	t_color		ceilcol;
+	t_textures	textures;
+	double		*z_buffer;
+	double		*camplanexraydirsin_buffer;
+	t_image		*curtexp;
+	int		winy;
+	int		drawnwallheight;
+	int		win_beginwall;
+	int		win_endwall;
+	t_color		floorcol;
+	t_xy		camplanevec;
+	t_xy		res;
+	double		halfres;
+	char		**map;
+	int		rows;
+	int		wid;
+	int		ispos;
+	t_xy		playerpos;
+	double		playerdir;
+	double		azimut;
+	int		hitwalldir;
+	int		spritesnb;
+	t_sprite	**sprites;
+	t_sprite	**sptab;
+	t_render	s;
+	double		maxraylength;
+	t_keylog	keylog;
 	unsigned char	is_change;
-}					t_cub3d;
+}			t_cub3d;
 
 typedef struct		s_id_handler {
-	char			*id;
-	int				(*ft_handle_id)(t_cub3d *m, char **tokens);
-}					t_id_handler;
+	char		*id;
+	int		(*ft_handle_id)(t_cub3d *m, char **tokens);
+}			t_id_handler;
 
-void		ft_free_and_exit(t_cub3d *m, char *err_msg, int ret);
+void			ft_free_and_exit(t_cub3d *m, char *err_msg, int ret);
 
-void		ft_store_pos(t_cub3d *m);
-void		ft_parse(int ac, char **av, t_cub3d *m);
+void			ft_store_pos(t_cub3d *m);
+void			ft_parse(int ac, char **av, t_cub3d *m);
 int			ft_is_unsigned_triplet(char *s);
 int			ft_is_unsigned(char *s);
 int			ft_rt_atoi(const char *str);
@@ -238,45 +221,47 @@ int			ft_store_texture(t_cub3d *m, char **tok);
 int			ft_check_single_line(char *s, t_cub3d *m, int i);
 int			ft_store_map(char *line, int calls, t_cub3d *m);
 int			ft_parse_map_columns(t_cub3d *m);
-void		ft_store_sprites(t_cub3d *m, char **map, int i);
+void			ft_store_sprites(t_cub3d *m, char **map, int i);
 
-double		ft_setangle(double angle);
-void		ft_initialize_mlx_image(t_cub3d *m);
+double			ft_setangle(double angle);
+void			ft_initialize_mlx_image(t_cub3d *m);
 
-void		ft_display_image(t_cub3d *m, t_image img);
+void			ft_display_image(t_cub3d *m, t_image img);
 
-void		ft_set_mlx_img_pixel(int x, int y, t_cub3d *m, t_color color);
-void		ft_reset_sprite_collisions(t_sprite **sprites);
-void		ft_render(t_cub3d *m);
-void		ft_digital_differential_analizer(t_cub3d *m, t_xy pos,t_render *s);
-void		ft_print_pixcolumn(t_cub3d *m, t_render *s);
-void		ft_render_sprites(t_cub3d *m, t_sprite **sprites, t_sprite **tab);
-void		ft_sprite_quicksort(t_sprite **tab, int low, int high);
-void		ft_print_sprites(t_cub3d *m, t_sprite **tab);
+void			ft_set_mlx_img_pixel(int x, int y, t_cub3d *m, t_color color);
+void			ft_reset_sprite_collisions(t_sprite **sprites);
+void			ft_render(t_cub3d *m);
+void			ft_digital_differential_analizer(t_cub3d *m, t_xy pos, \
+								t_render *s);
+void			ft_print_pixcolumn(t_cub3d *m, t_render *s);
+void			ft_render_sprites(t_cub3d *m, t_sprite **sprites, \
+								t_sprite **tab);
+void			ft_sprite_quicksort(t_sprite **tab, int low, int high);
+void			ft_print_sprites(t_cub3d *m, t_sprite **tab);
 
 int			ft_red_cross(int key, t_cub3d *m);
 int			ft_keypress(int key, t_cub3d *m);
 int			ft_keyrelease(int key, t_cub3d *m);
-void		ft_scrape_wall(t_cub3d *m, double dirangle);
+void			ft_scrape_wall(t_cub3d *m, double dirangle);
 int			ft_handle_hooks(t_cub3d *m);
 
-void		ft_compute_textures_uv_steps(t_cub3d *m);
+void			ft_compute_textures_uv_steps(t_cub3d *m);
 
 typedef struct		s_bmp {
-	char			header[54];
+	char		header[54];
 	unsigned int	pixcount;
 	unsigned int	bufsize;
 	unsigned int	total_size;
 	unsigned int	pix_data_offset;
 	unsigned int	header_size;
-	int				imagewidth;
-	int				imageheight;
+	int		imagewidth;
+	int		imageheight;
 	short		color_planes;
 	short		bpp;
-	int				compression;
-	int				total_colors;
-}					t_bmp;
+	int		compression;
+	int		total_colors;
+}			t_bmp;
 
-void		ft_save_bmp(t_cub3d *m);
+void			ft_save_bmp(t_cub3d *m);
 
 #endif
