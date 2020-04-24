@@ -7,6 +7,8 @@ clean :
 	rm -rf *.o
 
 fclean :
+	make clean
+	rm -f snapshot.bmp
 	rm -f exec
 
 re :
