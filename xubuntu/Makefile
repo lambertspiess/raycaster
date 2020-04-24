@@ -7,6 +7,7 @@ clean :
 	rm -rf *.o
 
 fclean :
+	make clean
 	rm -f exec
 
 re :
