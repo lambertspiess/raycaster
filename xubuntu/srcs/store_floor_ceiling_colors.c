@@ -16,6 +16,8 @@ int					ft_store_floor_color(t_cub3d *m, char **tok)
 {
 	if (tok[1] == NULL)
 		return (FAILURE);
+	if (tok[2] != NULL)
+		return (FAILURE);
 	if (ft_is_unsigned_triplet(tok[1]) == FALSE)
 		return (FAILURE);
 	if (ft_extract_color(tok[1], &(m->floorcol)) == FAILURE)
@@ -26,6 +28,8 @@ int					ft_store_floor_color(t_cub3d *m, char **tok)
 int					ft_store_ceiling_color(t_cub3d *m, char **tok)
 {
 	if (tok[1] == NULL)
+		return (FAILURE);
+	if (tok[2] != NULL)
 		return (FAILURE);
 	if (ft_is_unsigned_triplet(tok[1]) == FALSE)
 		return (FAILURE);

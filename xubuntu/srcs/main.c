@@ -35,8 +35,8 @@ int			main(int ac, char **av)
 	t_cub3d		m;
 
 	ft_memset((void *)(&m), 0, sizeof(t_cub3d));
-	pthread_create(&m.thread_id, NULL, ft_play_music, NULL);
 	ft_initialize_cub3d(ac, av, &m);
+	pthread_create(&m.thread_id, NULL, ft_play_music, NULL);
 	ft_render(&m);
 	if (m.save_bmp)
 		ft_save_bmp(&m);

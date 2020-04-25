@@ -20,6 +20,11 @@ typedef struct		s_xy {
 	double			y;
 }					t_xy;
 
+typedef struct		s_ixy {
+	int			x;
+	int			y;
+}					t_ixy;
+
 typedef struct		s_color {
 	int				r;
 	int				g;

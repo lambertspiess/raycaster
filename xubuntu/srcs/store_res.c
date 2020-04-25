@@ -14,12 +14,18 @@
 
 int			ft_store_res(t_cub3d *m, char **tok)
 {
+	t_ixy			max;
+
 	if (tok[1] == NULL || tok[2] == NULL)
 		return (FAILURE);
-	if (ft_is_unsigned(tok[1]) == FALSE || ft_is_unsigned(tok[2]) == FALSE)
+	if (ft_is_unsigned(tok[1]) == FALSE || ft_is_unsigned(tok[2]) == FALSE\
+		|| tok[3] != NULL)
 		return (FAILURE);
 	m->res.x = (double)(ft_rt_atoi(tok[1]));
 	m->res.y = (double)(ft_rt_atoi(tok[2]));
+	mlx_get_screen_size(m->mlx_id, &(max.x), &(max.y));
+	m->res.x = (int)(m->res.x) > max.x ? (double)(max.x) : m->res.x;
+	m->res.y = (int)(m->res.y) > max.y ? (double)(max.y) : m->res.y;
 	if (((int)(m->res.x) % 2) == 1)
 		m->res.x += 1;
 	if ((int)(m->res.y) % 2 == 1)

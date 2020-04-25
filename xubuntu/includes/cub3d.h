@@ -26,6 +26,7 @@
 # include "defines.h"
 # include "time.h"
 # include "stdio.h"
+# include "./structs.h"
 
 # define RAD_MUL 0.01745329251994329576
 # define DEG_MUL 57.2957795

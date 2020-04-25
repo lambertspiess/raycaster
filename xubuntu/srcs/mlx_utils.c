@@ -30,6 +30,5 @@ void		ft_initialize_mlx_image(t_cub3d *m)
 
 void		ft_display_image(t_cub3d *m, t_image img)
 {
-	mlx_clear_window(m->mlx_id, m->mlx_win_id);
 	mlx_put_image_to_window(m->mlx_id, m->mlx_win_id, img.img_ptr, 0, 0);
 }

@@ -44,7 +44,6 @@ static int		ft_find_handler(t_cub3d *m, char **tokens, size_t tabidx,
 	}
 	if (ret == FAILURE)
 	{
-		ft_printf("parsing handler function failed\n");
 		return (FAILURE);
 	}
 	return (SUCCESS);
@@ -120,12 +119,8 @@ void			ft_parse(int ac, char **av, t_cub3d *m)
 	m->maxraylength = sqrt(pow(m->rows + 1, 2) * pow(m->wid + 1, 2));
 	m->s.xrayoffset = FOV / m->res.x;
 	if (!m->textures.northwall.img_ptr || !m->textures.westwall.img_ptr \
-		|| !m->textures.eastwall.img_ptr || !m->textures.southwall.img_ptr)
+		|| !m->textures.eastwall.img_ptr || !m->textures.southwall.img_ptr \
+		|| !m->textures.pillar.img_ptr)
 		ft_free_and_exit(m, "Error,\nmissing texture in description\n", -1);
 	ft_store_sprites(m, m->map, 0);
-	if (m->res.x > 900.0 || m->res.y > 900.0)
-	{
-		m->res.x = 900;
-		m->res.y = 900;
-	}
 }

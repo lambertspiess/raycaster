@@ -16,16 +16,18 @@ int				ft_store_texture(t_cub3d *m, char **tokens)
 {
 	t_image			*dest;
 
+	if (tokens[2] != NULL)
+		return (FAILURE);
 	if (ft_strequ(tokens[0], "NO"))
 		dest = &(m->textures.northwall);
 	else if (ft_strequ(tokens[0], "WE"))
 		dest = &(m->textures.westwall);
 	else if (ft_strequ(tokens[0], "EA"))
 		dest = &(m->textures.eastwall);
+	else if (ft_strequ(tokens[0], "SO"))
+		dest = &(m->textures.southwall);
 	else if (ft_strequ(tokens[0], "S"))
 		dest = &(m->textures.pillar);
-	else
-		dest = &(m->textures.southwall);
 	if (!(dest->img_ptr = mlx_xpm_file_to_image(m->mlx_id, (char *)(tokens[1]),
 											&(dest->width), &(dest->height))))
 	{

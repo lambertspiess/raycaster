@@ -53,7 +53,8 @@ void		ft_free_and_exit(t_cub3d *m, char *err_msg, int ret)
 		ft_free_sprites(m);
 	if (m->sptab != NULL)
 		free(m->sptab);
-	system("pkill -f cub3d_background_music &>/dev/null && killall aplay");
+	system(\
+	"pkill -f cub3d_background_music &>/dev/null && pkill aplay &>/dev/null");
 	pthread_join(m->thread_id, NULL);
 	exit(ret);
 }
