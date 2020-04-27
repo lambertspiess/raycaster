@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <unistd.h>
 #include <stdlib.h>
-#define BUFFER_SIZE 10000
+#define BUFFER_SIZE 1000
 
 int			gnl_strchr(char *s)
 {

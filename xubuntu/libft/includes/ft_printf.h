@@ -29,22 +29,20 @@
 ******************************** DEFINES ***************************************
 */
 
-# define UNUSED(p)				((void)(p))
-
 # define CONV_SPEC				"cspdiuxX%"
 # define PF_FLAGS				"#-+0 *."
 # define PF_FLAGS_DEFAULT		-1
 
-# define ISMINUS				(1 << 0)
-# define ISPLUS					(1 << 1)
-# define ISSPACE				(1 << 2)
-# define ISZERO					(1 << 3)
-# define ISDOT					(1 << 4)
-# define ISWILD					(1 << 5)
-# define ISLONG					(1 << 6)
-# define ISLONGLONG				(1 << 7)
-# define ISOCT					(1 << 8)
-# define ISMAJ					(1 << 9)
+# define ISMINUS				1
+# define ISPLUS					2
+# define ISSPACE				4
+# define ISZERO					8
+# define ISDOT					16
+# define ISWILD					32
+# define ISLONG					64
+# define ISLONGLONG				128
+# define ISOCT					256
+# define ISMAJ					512
 
 /*
 ********************************** ENUMS ***************************************

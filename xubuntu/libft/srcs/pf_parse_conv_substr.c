@@ -98,7 +98,7 @@ t_stroke		pf_parse_conv_substr(t_pf_fmt *fmt, t_vector *vct,
 	t_stroke		stroke;
 	int				i;
 
-	UNUSED(vct);
+	vct = vct + 1 - 1;
 	stroke.curstate = PARSING_CONV_SUBSTR;
 	pf_parse_reset_flags(flags);
 	i = fmt->idx + 1;

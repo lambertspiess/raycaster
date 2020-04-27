@@ -39,8 +39,8 @@ t_stroke		pf_scan_format_str(t_pf_fmt *fmt, t_vector *vct,
 {
 	t_stroke		stroke;
 
-	UNUSED(ap);
-	UNUSED(flags);
+	ap += 1;
+	flags = flags + 1 - 1;
 	stroke.curstate = SCANNING_FORMAT_STR;
 	while ((size_t)(fmt->idx) < fmt->len)
 	{

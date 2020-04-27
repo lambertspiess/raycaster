@@ -60,4 +60,5 @@ void					ft_save_bmp(t_cub3d *m)
 	write(fd, bmp.header, 54);
 	if ((data = (char *)(m->display.img_data_addr)) != NULL)
 		write(fd, data, (int)(m->res.x * m->res.y * 4));
+	ft_free_and_exit(m, "Saved snapshot_cub3d.bmp\n", -1);
 }

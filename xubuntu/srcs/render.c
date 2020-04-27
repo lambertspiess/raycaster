@@ -83,5 +83,4 @@ void		ft_render(t_cub3d *m)
 		m->s.xraydir = ft_setangle(m->s.xraydir - m->s.xrayoffset);
 	}
 	ft_render_sprites(m, m->sprites, m->sptab);
-	ft_display_image(m, m->display);
 }

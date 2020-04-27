@@ -10,7 +10,7 @@ clean :
 
 fclean :
 	make clean
-	rm -f snapshot.bmp
+	rm -f snapshot_cub3d.bmp
 	rm -f cub3d
 
 re :

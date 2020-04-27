@@ -36,10 +36,11 @@ int			main(int ac, char **av)
 
 	ft_memset((void *)(&m), 0, sizeof(t_cub3d));
 	ft_initialize_cub3d(ac, av, &m);
-	pthread_create(&m.thread_id, NULL, ft_play_music, NULL);
 	ft_render(&m);
 	if (m.save_bmp)
 		ft_save_bmp(&m);
+	ft_display_image(&m, m.display);
+	pthread_create(&m.thread_id, NULL, ft_play_music, NULL);
 	mlx_hook(m.mlx_win_id, 2, 1L << 0, ft_keypress, &m);
 	mlx_hook(m.mlx_win_id, 3, 1L << 1, ft_keyrelease, &m);
 	mlx_hook(m.mlx_win_id, 17, 1L << 17, ft_red_cross, &m);
