@@ -111,9 +111,9 @@ static void		ft_read_scene_file(t_cub3d *m)
 void			ft_parse(int ac, char **av, t_cub3d *m)
 {
 	m->fd = open(av[1], O_RDONLY);
-	ft_strcpy(&(m->filename[0]), av[1]);
 	if (m->fd < 0 || ac == 1 || ac > 3)
 		ft_free_and_exit(m, "Error,\nUsage : ./cub3d map.cub [--save]\n", -1);
+	ft_strcpy(&(m->filename[0]), av[1]);
 	ft_read_scene_file(m);
 	ft_store_pos(m);
 	m->maxraylength = sqrt(pow(m->rows + 1, 2) * pow(m->wid + 1, 2));
