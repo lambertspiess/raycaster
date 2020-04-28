@@ -43,6 +43,7 @@ int			main(int ac, char **av)
 	pthread_create(&m.thread_id, NULL, ft_play_music, NULL);
 	mlx_hook(m.mlx_win_id, 2, 1L << 0, ft_keypress, &m);
 	mlx_hook(m.mlx_win_id, 3, 1L << 1, ft_keyrelease, &m);
+	mlx_hook(m.mlx_win_id, 12, 1L << 17, ft_minimize, &m);
 	mlx_hook(m.mlx_win_id, 17, 1L << 17, ft_red_cross, &m);
 	mlx_loop_hook(m.mlx_id, ft_handle_hooks, &m);
 	mlx_loop(m.mlx_id);

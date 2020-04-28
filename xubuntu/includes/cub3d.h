@@ -90,6 +90,7 @@ void				ft_render_sprites(t_cub3d *m, t_sprite **sprites, \
 void				ft_sprite_quicksort(t_sprite **tab, int low, int high);
 void				ft_print_sprites(t_cub3d *m, t_sprite **tab);
 
+int					ft_minimize(int key, t_cub3d *m);
 int					ft_red_cross(int key, t_cub3d *m);
 int					ft_keypress(int key, t_cub3d *m);
 int					ft_keyrelease(int key, t_cub3d *m);

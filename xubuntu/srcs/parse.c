@@ -108,11 +108,33 @@ static void		ft_read_scene_file(t_cub3d *m)
 	}
 }
 
+static int		ft_check_extension(char *s)
+{
+	int				i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	if (s[i--] != 'b')
+		return (0);
+	if (i < 0)
+		return (0);
+	if (s[i--] != 'u')
+		return (0);
+	if (i < 0)
+		return (0);
+	if (s[i] != 'c')
+		return (0);
+	return (1);
+}
+
 void			ft_parse(int ac, char **av, t_cub3d *m)
 {
 	m->fd = open(av[1], O_RDONLY);
 	if (m->fd < 0 || ac == 1 || ac > 3)
 		ft_free_and_exit(m, "Error,\nUsage : ./cub3d map.cub [--save]\n", -1);
+	if (ft_check_extension(av[1]) == 0)
+		ft_free_and_exit(m, "Error,\nmap file needs \".cub\" extension\n", -1);
 	ft_strcpy(&(m->filename[0]), av[1]);
 	ft_read_scene_file(m);
 	ft_store_pos(m);

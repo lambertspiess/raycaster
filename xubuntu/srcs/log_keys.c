@@ -53,6 +53,11 @@ int			ft_keypress(int key, t_cub3d *m)
 	return (1);
 }
 
+int			ft_minimize(int key, t_cub3d *m)
+{
+	ft_printf("sfsg\n");
+}
+
 int			ft_red_cross(int key, t_cub3d *m)
 {
 	(void)key;
