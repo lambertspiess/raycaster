@@ -115,6 +115,7 @@ static int		ft_check_extension(char *s)
 	i = 0;
 	while (s[i])
 		i++;
+	i--;
 	if (s[i--] != 'b')
 		return (0);
 	if (i < 0)
