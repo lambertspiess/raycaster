@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lspiess <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/22 15:45:53 by lspiess           #+#    #+#              #
-#    Updated: 2020/04/24 16:42:45 by lspiess          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 ################################################################################
 ##############################                 #################################
 ##############################   PRINT VARS    #################################
@@ -70,7 +58,7 @@ LIBPATH += ./libft
 CC = gcc
 
 # Compiler flags
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra
 
 CFLAGS += -lmlx -framework OpenGL -framework AppKit -Ofast+++
 
@@ -88,12 +76,12 @@ VALGRIND_FLAGS += -ggdb3# -pedantic
 
 #--------------------------------- STANDARD -----------------------------------#
 
-all : $(NAME)
-
 $(NAME) :
-	cd $(LIBPATH) && make
-	gcc $(CFLAGS)  -I./$(LIBPATH)/includes/ -I./includes/ \
-		$(LIBPATH)/$(LIBFT) $(SRCPATH)/*c -o $(NAME)
+	$(MAKE) -C ./libft
+	$(MAKE) -C ./mlx_osx
+	gcc -I includes -I mlx_osx -I ./libft/includes -c ./srcs/*c
+	gcc -o cub3D -I includes -I mlx_osx *.o ./mlx_osx/libmlx.a \
+	./libft/libft.a -framework OpenGL -framework AppKit -Ofast+++
 
 clean :
 	rm -f *.o

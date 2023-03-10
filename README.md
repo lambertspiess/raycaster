@@ -4,3 +4,5 @@ Usage :
 	cd osx|xubuntu
 	make
 	./exec ./maps/<map_descriptor> [--save]
+
+![cub](./cub.gif)
